@@ -1,6 +1,6 @@
 define(function(require) {
 
-    var h = require('utils/fountain/helpers');
+    var h = require('aw-parser').helpers;
 
     var module = {};
 

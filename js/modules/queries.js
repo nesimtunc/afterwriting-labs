@@ -3,7 +3,7 @@ define(function(require) {
         helper = require('utils/helper'),
         data = require('modules/data'),
         fquery = require('utils/fountain/query'),
-        fhelpers = require('utils/fountain/helpers');
+        fhelpers = require('aw-parser').helpers;
 
     var h = fhelpers.fq;
 

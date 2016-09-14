@@ -3,7 +3,7 @@ define(function(require) {
     var Plugin = require('core/plugin'),
         template = require('text!templates/plugins/facts.hbs'),
         off = require('off'),
-        fhelpers = require('utils/fountain/helpers');
+        fhelpers = require('aw-parser').helpers;
 
     var Facts = Plugin.extend({
 

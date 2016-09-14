@@ -21,7 +21,8 @@
             off: '../node_modules/off/off',
             text: '../node_modules/text/text',
             Blob: 'libs/Blob',
-            'es6-promise': '../node_modules/es6-promise/dist/es6-promise.min'
+            'es6-promise': '../node_modules/es6-promise/dist/es6-promise.min',
+            'aw-parser': '../node_modules/aw-parser/dist/aw-parser.amd'
         },
         shim: {
             handlebars: {
