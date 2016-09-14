@@ -38,14 +38,13 @@ require.config({
         'pdfkit': 'libs/pdfkit',
         'logger': 'libs/logger'
     },
-    use_node_require: ['jquery', 'fs', 'protoplast', 'd3', 'off', 'aw-parser']
+    use_node_require: ['jquery', 'fs', 'protoplast', 'd3', 'off', 'aw-parser', 'aw-liner']
 });
 
-var parser, data, liner, pdfmaker, help;
+var parser, data, pdfmaker;
 
 parser = require('aw-parser').parser;
 data = require('modules/data');
-liner = require('utils/fountain/liner');
 pdfmaker = require('utils/pdfmaker');
 
 function validate_options() {

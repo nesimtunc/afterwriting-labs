@@ -22,7 +22,8 @@
             text: '../node_modules/text/text',
             Blob: 'libs/Blob',
             'es6-promise': '../node_modules/es6-promise/dist/es6-promise.min',
-            'aw-parser': '../node_modules/aw-parser/dist/aw-parser.amd'
+            'aw-parser': '../node_modules/aw-parser/dist/aw-parser.amd',
+            'aw-liner': '../node_modules/aw-liner/dist/aw-liner.amd'
         },
         shim: {
             handlebars: {

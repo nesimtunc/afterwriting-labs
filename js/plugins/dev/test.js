@@ -3,7 +3,8 @@ define(function(require) {
     var Plugin = require('core/plugin'),
         template = require('text!templates/plugins/dev/test.hbs'),
         fparser = require('aw-parser').parser,
-        fliner = require('utils/fountain/liner'),
+        fhelpers = require('aw-parser').helpers,
+        fliner = require('aw-liner'),
         data = require('modules/data');
 
     var Test = Plugin.extend({
@@ -34,7 +35,7 @@ define(function(require) {
 
             start = new Date().getTime();
             for (i = 0; i < times; i++) {
-                lines = fliner.line(tokens, config);
+                lines = fliner.line(tokens,fhelpers, config);
             }
             end = new Date().getTime();
             result.push({

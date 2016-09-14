@@ -2,7 +2,8 @@ define(function(require) {
 
     var Modernizr = require('modernizr'),
         fparser = require('aw-parser').parser,
-        fliner = require('utils/fountain/liner'),
+        fhelpers = require('aw-parser').helpers,
+        fliner = require('aw-liner'),
         converter = require('utils/converters/scriptconverter'),
         preprocessor = require('utils/fountain/preprocessor'),
         print_profiles = require('utils/print-profiles'),
@@ -65,7 +66,7 @@ define(function(require) {
 
         parse: function() {
             this.parsed = fparser.parse(this.script(), this.config);
-            this.parsed.lines = fliner.line(this.parsed.tokens, this.config);
+            this.parsed.lines = fliner.line(this.parsed.tokens, fhelpers, this.config);
 
             if (this.config.use_print_settings_for_stats) {
                 this.parsed_stats = this.parsed;
