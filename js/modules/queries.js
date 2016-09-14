@@ -2,10 +2,10 @@ define(function(require) {
     var Module = require('core/module'),
         helper = require('utils/helper'),
         data = require('modules/data'),
-        fquery = require('utils/fountain/query'),
-        fhelpers = require('aw-parser').helpers;
+        fhelpers = require('aw-parser').helpers,
+        fquery = require('aw-fquery')(fhelpers);
 
-    var h = fhelpers.fq;
+    var h = fquery.ops;
 
     var Queries = Module.extend({
 
@@ -13,7 +13,7 @@ define(function(require) {
 
         create_days_and_nights: function() {
 
-            var query = fquery('label', {
+            var query = fquery.factory('label', {
                 value: 0
             });
             query.prepare(function(fq) {
@@ -32,7 +32,7 @@ define(function(require) {
                 fq.recognized_scenes += item.value;
             });
             query.end(function(result, fq) {
-                var all_scenes = fquery().count('scenes', h.is('scene_heading')).run(fq.source).scenes;
+                var all_scenes = fquery.factory().count('scenes', h.is('scene_heading')).run(fq.source).scenes;
 
                 result.push({
                     label: 'OTHER',
@@ -43,7 +43,7 @@ define(function(require) {
         },
 
         create_basics: function() {
-            var basic = fquery(null, {
+            var basic = fquery.factory(null, {
                 last_page_lines: 0,
                 scenes: 0,
                 pages: 0,
@@ -150,7 +150,7 @@ define(function(require) {
         create_characters: function() {
             var runner = {};
             runner.run = function(tokens, basics, config) {
-                var characters_query = fquery('name', {
+                var characters_query = fquery.factory('name', {
                     nof_scenes: 0,
                     lines: 0
                 });
@@ -178,7 +178,7 @@ define(function(require) {
         },
 
         create_locations: function() {
-            var query = fquery('name', {
+            var query = fquery.factory('name', {
                 count: 0
             }, {
                 sort_by: 'count'
@@ -190,7 +190,7 @@ define(function(require) {
         },
 
         create_locations_breakdown: function() {
-            var query = fquery('token', {
+            var query = fquery.factory('token', {
                 scenes: 0,
                 lines: 0,
                 scenes_lines: null
@@ -236,7 +236,7 @@ define(function(require) {
                 });
 
                 // characters in scene
-                var characters_in_scene = fquery('scene');
+                var characters_in_scene = fquery.factory('scene');
                 characters_in_scene.enter(h.is('scene_heading'), function(item, fq) {
                     fq.current_scene = item;
                 });
@@ -246,7 +246,7 @@ define(function(require) {
                     selector.characters.indexOf(item.name()) === -1 && top_index[item.name()] !== undefined && selector.characters.push(item.name());
                 });
                 var characters_by_scene = characters_in_scene.run(tokens);
-                var links_query = fquery('link_id', {
+                var links_query = fquery.factory('link_id', {
                     scenes: 0
                 });
                 links_query.enter(true, function(item, fq) {
@@ -270,7 +270,7 @@ define(function(require) {
 
         create_int_and_ext: function() {
 
-            var query = fquery('label', {value: 0});
+            var query = fquery.factory('label', {value: 0});
             query.prepare(function(fq) {
                 fq.recognized_scenes = 0;
             });
@@ -281,7 +281,7 @@ define(function(require) {
         },
 
         create_scene_length: function() {
-            var query = fquery('token', {
+            var query = fquery.factory('token', {
                 length: 0
             });
             query.prepare(function(fq) {
@@ -309,7 +309,7 @@ define(function(require) {
         },
 
         create_page_balance: function() {
-            var query = fquery('page_number', {
+            var query = fquery.factory('page_number', {
                 action_lines: 0,
                 dialogue_lines: 0,
                 total_lines: 0,
@@ -349,7 +349,7 @@ define(function(require) {
             var runner = {};
             runner.run = function(tokens) {
 
-                var query = fquery('scene_number');
+                var query = fquery.factory('scene_number');
                 query.prepare(function(fq) {
                     fq.current_scene_number = 0;
                     fq.current_scene = null;

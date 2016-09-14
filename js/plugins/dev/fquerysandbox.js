@@ -5,7 +5,7 @@ define(function(require) {
         fhelpers = require('utils/fountain/helpers'),
         data = require('modules/data'),
         queries = require('modules/queries'),
-        fquery = require('utils/fountain/query'),
+        fquery = require('aw-fquery')(fhelpers),
         helper = require('utils/helper');
 
     var FQuerySandbox = Plugin.extend({

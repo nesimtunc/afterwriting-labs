@@ -19,6 +19,7 @@
     "url": "git://github.com/ifrost/afterwriting-labs.git"
   },
   "devDependencies": {
+    "aw-fquery": "0.0.1",
     "aw-liner": "0.0.1",
     "chai": "^2.1.1",
     "express": "^4.13.4",
