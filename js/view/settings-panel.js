@@ -24,13 +24,13 @@ define(function(require) {
         table: {
             component: Protoplast.Component.extend({tag:'table'})
         },
-        
+
         layoutReady: false,
 
         $create: function() {
             this.config = Protoplast.Collection.create([]);
         },
-        
+
         init: function() {
             Protoplast.utils.renderList(this, 'config', {
                 parent: this.table,

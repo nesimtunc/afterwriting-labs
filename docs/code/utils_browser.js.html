@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Home</title>
+    <title>JSDoc: Source: utils/browser.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,32 +17,43 @@
 
 <div id="main">
 
-    <h1 class="page-title">Home</h1>
+    <h1 class="page-title">Source: utils/browser.js</h1>
 
     
 
 
 
     
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>define(function(require) {
 
+    /**
+     * Browser helpers
+     * @exports utils/browser
+     */
+    var module = {};
 
-    <h3> </h3>
+    /**
+     * Returns map of params passed to the URL
+     * @returns {Object}
+     */
+    module.url_params = function() {
+        var url_params = {};
+        if (window &amp;&amp; window.location &amp;&amp; window.location.search) {
+            window.location.search.replace(/[?&amp;]+([^=&amp;]+)=([^&amp;]*)/gi, function(str, key, value) {
+                url_params[key] = value;
+            });
+        }
+        return url_params;
+    };
 
+    return module;
 
-
-
-
-
-
-
-
-
-    
-
-
-
-
-
+});
+</code></pre>
+        </article>
+    </section>
 
 
 

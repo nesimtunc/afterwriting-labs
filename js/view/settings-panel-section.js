@@ -26,6 +26,7 @@ define(function(require) {
             var item = SettingsPanelItem.create();
             item.label = controlConfig.label;
             item.control = controlConfig.type.create();
+            item.control.id = controlConfig.key;
             if (controlConfig.initialValue) {
                 item.control.value = controlConfig.initialValue;
             }

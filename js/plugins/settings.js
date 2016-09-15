@@ -1,6 +1,7 @@
 define(function(require) {
 
     var Plugin = require('core/plugin'),
+        SettingsPanel = require('view/settings-panel'),
         template = require('text!templates/plugins/settings.hbs');
 
     var Settings = Plugin.extend({
@@ -34,6 +35,10 @@ define(function(require) {
 
         get_default_config: function() {
             return this.data.default_config;
+        },
+
+        getMainView: function() {
+            return SettingsPanel.create();
         },
 
         windup: function() {

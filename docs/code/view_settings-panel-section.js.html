@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: utils/fn.js</title>
+    <title>JSDoc: Source: view/settings-panel-section.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: utils/fn.js</h1>
+    <h1 class="page-title">Source: view/settings-panel-section.js</h1>
 
     
 
@@ -26,41 +26,52 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>define(function() {
+            <pre class="prettyprint source linenums"><code>define(function(require) {
+   
+    var Protoplast = require('protoplast'),
+        SettingsPanelItem = require('view/settings-panel-item');
 
-    /**
-     * Functional helpers
-     * @exports utils/fn
-     */
-    var fn = {};
+    var SettingsPanelSection = Protoplast.Component.extend({
+        
+        html: '&lt;tbody>&lt;tr>&lt;th colspan="2" data-prop="header">&lt;/th>&lt;/tr>&lt;/tbody>',
 
-    /**
-     * Conflates calls for "paginated" calls, for example Dropbox API returns
-     * For more details - see the test.
-     * {has_more: true, changes: [...]} if there are more results to poll, and
-     * {has_more: false, changes: [...]} if there are no more results.
-     *
-     * @param {Function}   caller   function used to make the call, caller(conflate_callback, last_response_arg1, last_response_arg2...) - conflate callback should be used as the main callback for the action
-     * @param {Function}   tester   function that should return true if another call should be takes, tester(last_response_arg1, last_response_arg2...)
-     * @param {Function}   final_callback   function that will be called after all results are collected, accepts on argument with list of all response arguments passed to the result callback: final_callback([[first_response_arg1, first_response_arg2...],[second_response_arg1, second_response_arg2, ...],...).
-     */
-    fn.conflate = function(caller, tester, final_callback) {
-        var all_results = [];
+        /**
+         * Section to be displayed
+         */
+        section: null,
 
-        var conflate_callback = function() {
-            var args = Array.prototype.slice.call(arguments);
-            all_results.push(args);
-            if (tester.apply(null, args)) {
-                caller.apply(null, [conflate_callback].concat(args));
-            } else {
-                final_callback(all_results);
+        init: function() {
+            Protoplast.utils.bind(this, 'section', this.render.bind(this));
+        },
+        
+        render: function() {
+            this.header.innerHTML = this.section.title;
+            
+            (this.section.controls || []).forEach(this.addRow, this);
+        },
+
+        addRow: function(controlConfig) {
+            var item = SettingsPanelItem.create();
+            item.label = controlConfig.label;
+            item.control = controlConfig.type.create();
+            item.control.id = controlConfig.key;
+            if (controlConfig.initialValue) {
+                item.control.value = controlConfig.initialValue;
             }
-        };
+            if (controlConfig.options) {
+                item.control.options = controlConfig.options;
+            }
+            item.key = controlConfig.key;
 
-        caller(conflate_callback, null);
-    };
-
-    return fn;
+            item.on('configValueChanged', function(event) {
+                this.dispatch('configValueChanged', event);
+            }.bind(this));
+            this.add(item);
+        }
+        
+    });
+    
+    return SettingsPanelSection;
 });</code></pre>
         </article>
     </section>

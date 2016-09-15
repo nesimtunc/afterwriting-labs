@@ -19,7 +19,7 @@ define(function(require) {
 
         $auto_save_button: '.auto-save-icon',
 
-        $night_mode: 'input[setting="night_mode"]',
+        $night_mode: 'input[data-id="night_mode"]',
 
         $button: function(label) {
             return $('button:contains("' + label + '")');

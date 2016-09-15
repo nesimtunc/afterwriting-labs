@@ -31,11 +31,9 @@
     space between scenes) may affect statistics which are based on assumption that 1 page = 1 minute of a movie .</p>
 <div id="settings-panel-container"></div>
 <script>
-    require(['protoplast', 'view/settings-panel', 'bootstrap'], function(Protoplast, SettingsPanel, bootstrap) {
-
+    require(['protoplast', 'bootstrap', 'plugins/settings'], function(Protoplast, bootstrap, settings) {
         var root = Protoplast.Component.Root(document.getElementById('settings-panel-container'), bootstrap.context);
-        var panel = SettingsPanel.create();
-
+        var panel = settings.getMainView();
         root.add(panel);
     });
 </script>

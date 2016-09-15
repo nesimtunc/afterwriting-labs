@@ -1,14 +1,16 @@
 define(function(require) {
 
-    var Protoplast = require('protoplast');
+    var Protoplast = require('protoplast'),
+        BaseComponent = require('component/base-component');
     
-    var Checkbox = Protoplast.Component.extend({
+    var Checkbox = BaseComponent.extend({
 
         html: '<input type="checkbox" />',
 
         value: null,
 
         init: function() {
+            BaseComponent.init.call(this);
             Protoplast.utils.bind(this, 'value', this.updateValue.bind(this));
             this.root.onchange = this._changed.bind(this);
         },

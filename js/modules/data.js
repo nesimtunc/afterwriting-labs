@@ -79,7 +79,7 @@ define(function(require) {
                 stats_config.print_notes = false;
                 stats_config.print_synopsis = false;
                 this.parsed_stats = fparser.parse(this.script(), stats_config);
-                this.parsed_stats.lines = fliner.line(this.parsed_stats.tokens, stats_config);
+                this.parsed_stats.lines = fliner.line(this.parsed_stats.tokens, fhelpers, stats_config);
             }
         },
 

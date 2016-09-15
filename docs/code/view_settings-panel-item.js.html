@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Home</title>
+    <title>JSDoc: Source: view/settings-panel-item.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,32 +17,68 @@
 
 <div id="main">
 
-    <h1 class="page-title">Home</h1>
+    <h1 class="page-title">Source: view/settings-panel-item.js</h1>
 
     
 
 
 
     
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>define(function(require) {
 
+    var Protoplast = require('protoplast');
 
-    <h3> </h3>
+    var SettingsPanelItem = Protoplast.Component.extend({
 
+        html: '&lt;tr>&lt;td data-prop="$label">&lt;/td>&lt;/tr>',
 
+        label: null,
+        
+        key: null,
 
+        control: null,
 
+        init: function() {
+            Protoplast.utils.bind(this, 'label', this.renderLabel.bind(this));
+            Protoplast.utils.bind(this, 'control', this.addControl.bind(this));
+        },
 
+        renderLabel: function() {
+            this.$label.innerHTML = this.label + ':';
+        },
 
+        /**
+         * Creates a &lt;td> wrapper to surround the control
+         * @returns {*}
+         */
+        getTdWrapper: function() {
+            var td = Protoplast.Component.extend({tag: 'td'}).create();
+            this.add(td);
+            return td;
+        },
+        
+        addControl: function() {
+            var td = this.getTdWrapper();
+            td.add(this.control);
+            
+            this.control.on('valueChanged', this._changed.bind(this));
+        },
+        
+        _changed: function(value) {
+            this.dispatch('configValueChanged', {
+                key: this.key,
+                value: value
+            })
+        }
 
+    });
 
-
-
-    
-
-
-
-
-
+    return SettingsPanelItem;
+});</code></pre>
+        </article>
+    </section>
 
 
 

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Home</title>
+    <title>JSDoc: Source: core/plugin.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,32 +17,59 @@
 
 <div id="main">
 
-    <h1 class="page-title">Home</h1>
+    <h1 class="page-title">Source: core/plugin.js</h1>
 
     
 
 
 
     
-
-
-    <h3> </h3>
-
-
-
-
-
-
-
-
-
-
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>define(function(require) {
     
+    var Module = require('core/module'),
+        Handlebars = require('handlebars');
 
+    /**
+     * @alias Plugin
+     * @extends Module
+     */
+    var Plugin = Module.extend({
+        
+        is_plugin: true,
 
+        title: '',
 
+        template: null,
 
+        data: null,
 
+        context: null,
+
+        $create: function(name, title, template) {
+            this.title = this.title || title;
+            if (this.template || template) {
+                this.template = Handlebars.compile(this.template || template);
+            }
+            this.class = this.class || 'inactive';
+            this.data = {};
+            this.context = {};
+        },
+
+        activate: function() {
+        },
+
+        deactivate: function() {
+        }
+
+    });
+    
+    return Plugin;
+
+});</code></pre>
+        </article>
+    </section>
 
 
 
