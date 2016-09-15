@@ -15,6 +15,7 @@ define(['dependencies', 'protoplast'], function(_, p) {
             }, this);
 
             context.build();
+            this.context = context;
 
             this.modules.forEach(function(module) {
                 if (module.windup && typeof (module.windup) === 'function') {

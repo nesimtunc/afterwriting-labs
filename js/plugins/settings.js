@@ -17,7 +17,7 @@ define(function(require) {
 
         open: {
             inject: 'open'
-        }                 ,
+        },
 
         layout: {
             inject: 'layout'

@@ -24,12 +24,11 @@ define(function(require) {
         },
 
         prepare: {
-            inject_init: true,
+            injectInit: true,
             value: function() {}
         },
 
         windup: {
-            inject_post_init: true,
             value: function() {}
         }
 
