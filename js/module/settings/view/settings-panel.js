@@ -1,8 +1,8 @@
 define(function(require) {
 
     var Protoplast = require('protoplast'),
-        SettingsPanelPresenter = require('presenter/settings-panel-presenter'),
-        SettingsPanelSection = require('view/settings-panel-section');
+        SettingsPanelPresenter = require('module/settings/presenter/settings-panel-presenter'),
+        SettingsPanelGroup = require('module/settings/view/settings-panel-group');
 
     var SettingsPanel = Protoplast.Component.extend({
 
@@ -11,14 +11,7 @@ define(function(require) {
         },
 
         html: '<div class="settings-panel"><table data-comp="table"></table></div>',
-
-        /**
-         * Describes how settings are displayed
-         * Example:
-         * [section, section]
-         * section = {title: 'Title', controls: [control, control]}
-         * control = {key: 'config.key',label: 'Label', type: ControlClass, initialValue: ''}
-         */
+        
         config: null,
 
         table: {
@@ -34,8 +27,8 @@ define(function(require) {
         init: function() {
             Protoplast.utils.renderList(this, 'config', {
                 parent: this.table,
-                renderer: SettingsPanelSection,
-                rendererDataProperty: 'section',
+                renderer: SettingsPanelGroup,
+                rendererDataProperty: 'group',
                 create: function(parent, data, renderer, propertyName) {
                     var child = renderer.create();
                     child[propertyName] = data;

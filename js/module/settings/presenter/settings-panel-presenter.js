@@ -9,10 +9,24 @@ define(function(require) {
     var SettingsPanelPresenter = Presenter.extend({
 
         settings: {
-            inject: 'settings'
+            inject: 'settings-model'
+        },
+        
+        controller: {
+            inject: 'settings-controller'
         },
         
         init: function() {
+            Protoplast.utils.bindProperty(this, 'settings.groups', this.view, 'config');
+
+            // bind valus
+            
+            this.view.on('configValueChanged', function(event) {
+                this.controller.updateValue(event.key, event.value);
+            }.bind(this));
+        },
+        
+        __deprectated__oldInit: function() {
 
             this.view.config = this.getSettingsPanelConfig();
 

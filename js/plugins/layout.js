@@ -6,6 +6,8 @@ define(function(require) {
         Handlebars = require('handlebars'),
         common = require('utils/common'),
         off = require('off'),
+        Protoplast = require('protoplast'),
+        Section = require('view/section'),
         core = require('bootstrap');
 
     var Layout = Module.extend({
@@ -19,6 +21,14 @@ define(function(require) {
 
         data: {
             inject: 'data'
+        },
+
+        bootstrap: {
+            inject: 'bootstrap'
+        },
+
+        api: {
+            inject: 'addonApi'
         },
 
         $create: function() {
@@ -36,7 +46,7 @@ define(function(require) {
         },
 
         calculate_basics: function() {
-            this.small = $('html').width() < 800;
+            //this.small = $('html').width() < 800;
         },
 
         update_selector: function(no_animation) {
@@ -183,6 +193,10 @@ define(function(require) {
             return this.current;
         },
 
+        /**
+         * @deprecated to be replaced by initLayout
+         * @param context
+         */
         init_layout: function(context) {
 
             this.calculate_basics();
@@ -218,11 +232,11 @@ define(function(require) {
             });
 
             /** mouse over IE fix **/
-            $('.menu-item').hover(function() {
-                $(this).addClass('menu-item-hover');
-            }, function() {
-                $(this).removeClass('menu-item-hover');
-            });
+            // $('.menu-item').hover(function() {
+            //     $(this).addClass('menu-item-hover');
+            // }, function() {
+            //     $(this).removeClass('menu-item-hover');
+            // });
             $('.tool').hover(function() {
                 $(this).addClass('tool-hover');
             }, function() {
@@ -320,18 +334,18 @@ define(function(require) {
             /** hide all plugins **/
             $('.plugin-contents > div').hide();
 
-            /** init content **/
-            $('.menu-item').offset({
-                top: $(window).height() / 2,
-                left: $(window).width() / 2
-            }).css({
-                'opacity': 0
-            });
+            // /** init content **/
+            // $('.menu-item').offset({
+            //     top: $(window).height() / 2,
+            //     left: $(window).width() / 2
+            // }).css({
+            //     'opacity': 0
+            // });
             $('.tool.inactive').hide();
 
             this.update_selector(true);
             $('.content').css('display', 'block');
-            $('.menu').fadeIn();
+            //$('.menu').fadeIn();
 
 
             this.scopes = {
@@ -345,7 +359,18 @@ define(function(require) {
 
             var footer = common.data.footer;
             this.set_footer(footer);
+        },
+
+        initLayout: function() {
+            this.sectionsContainer = Protoplast.Component.Root(document.getElementsByClassName('sections')[0], this.bootstrap.context);
+
+            this.api.sections.forEach(function(sectionModel) {
+                var section = Section.create();
+                section.content = sectionModel.content;
+                this.sectionsContainer.add(section)
+            }, this)
         }
+
     });
 
     return Layout.create();

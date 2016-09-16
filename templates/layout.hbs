@@ -7,7 +7,7 @@
 <!--- main menu -->
 <div class="menu" style="display:none">
 	<ul class="selector">
-		{{#each plugins}} {{#if view}}
+        {{#each plugins}} {{#if view}}
 		<li class="menu-item {{name}} {{class}}" plugin="{{name}}">
 			<img src="{{static_path}}gfx/icons/{{name}}.svg" />
 			<span>{{title}}</span>
@@ -20,6 +20,7 @@
 		{{#each plugins}}{{#if view}}
 		<img class="tool {{class}}" src="{{static_path}}gfx/icons/{{name}}.svg" plugin="{{name}}" />
 		{{/if}}{{/each}}
+        <div class="top-menu"></div>
 		
 		<div class="right-icons">
 			<img class="close-content panel-icon" src="{{static_path}}gfx/icons/close.svg" />
@@ -29,5 +30,6 @@
 	</div>
 	<div class="plugin-contents">
 		{{#each plugins}}<div class="plugin-content" plugin="{{name}}">{{{view}}}</div>{{/each}}</div>
+    <div class="sections"></div>
 </div>
 <div id="tooltip"></div>

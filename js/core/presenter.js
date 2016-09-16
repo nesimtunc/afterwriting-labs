@@ -5,7 +5,7 @@ define(function(require) {
     /**
      * @alias Presenter
      */
-    var Presenter = p.extend({
+    var Presenter = p.extend([p.Dispatcher], {
 
         $meta: {
             constructors: [p.constructors.autobind]
