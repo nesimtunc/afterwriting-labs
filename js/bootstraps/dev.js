@@ -1,5 +1,6 @@
 require(['bootstrap',
-    
+
+    'addon/about-addon',
     'addon/settings-addon',
 
     'addon/bubble-theme-addon',

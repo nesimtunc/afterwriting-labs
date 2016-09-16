@@ -41,7 +41,7 @@ define(function(require) {
                 var section = this.theme.getOrCreateSection('settings');
                 section.shortTitle = 'setup';
                 section.title = 'Settings';
-                section.description = 'Blah blah blah blah blah.';
+                section.description = 'You can change configuration here. Some settings (e.g. page size, double space between scenes) may affect statistics which are based on assumption that 1 page = 1 minute of a movie.';
                 section.smallIcon = this.appModel.staticPath + 'gfx/icons/settings.svg';
                 section.mainContent = this.settingsPanel;
             }
