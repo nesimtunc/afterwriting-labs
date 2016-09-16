@@ -18,6 +18,19 @@ define(function(require) {
         
         update: function(key, value) {
             this.values[key] = value;
+            this.dispatch('valuesChanged', {key: key, value: value});
+        },
+        
+        getSettingEntry: function(key) {
+            var result = null;
+            this.groups.forEach(function(group) {
+                group.entries.forEach(function(entry) {
+                    if (entry.key === key) {
+                        result = entry;
+                    }
+                })
+            });
+            return result;
         }
         
     });

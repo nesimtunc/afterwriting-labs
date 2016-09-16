@@ -285,3 +285,15 @@ img.plugin-icon {
 .night-mode  {
     color: #7f7f7f;
 }
+
+.settings-panel table {
+    width: 100%;
+}
+
+.settings-panel table tr td {
+    width: 50%;
+}
+
+.settings-panel table tr td:nth-child(1) {
+    text-align: right;
+}

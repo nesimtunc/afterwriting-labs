@@ -5,14 +5,18 @@ define(function(require) {
 
     var SectionContainer = Protoplast.Component.extend({
 
-        html: '<div>' +
+        html: '<div style="overflow: auto">' +
         '<h1><span data-prop="title"></span>&nbsp;<span data-prop="infoIcon" class="info-icon"/></h1>' +
         '<p data-prop="description" class="info-content" style="display: none"></p>' +
         '<div data-comp="contentParent"></div>' +
         '</div>',
 
         contentParent: {
-            component: Protoplast.Component.extend()
+            component: Protoplast.Component.extend({html:'<div style="width:95%"></div>'})
+        },
+
+        themeModel: {
+            inject: 'theme-model'
         },
 
         title: null,
@@ -24,6 +28,8 @@ define(function(require) {
         section: null,
 
         descriptionVisible: false,
+
+        topPadding: 75,
 
         visible: {
             set: function(value) {
@@ -43,6 +49,19 @@ define(function(require) {
                 this.descriptionVisible = !this.descriptionVisible;
             }.bind(this)
         },
+
+        init: function() {
+            Protoplast.utils.bind(this, 'section.mainContent', this.recreateContent.bind(this));
+            Protoplast.utils.bind(this, 'section.title', this.updateTitle.bind(this));
+            Protoplast.utils.bind(this, 'section.description', this.updateDescription.bind(this));
+            Protoplast.utils.bind(this, 'descriptionVisible', this.toggleDescription.bind(this));
+            Protoplast.utils.bind(this, 'themeModel.height', this.updateHeight.bind(this));
+            Protoplast.utils.bind(this, 'topPadding', this.updateHeight.bind(this));
+        },
+
+        updateHeight: function() {
+            this.$root.height((this.themeModel.height - this.topPadding) + 'px');
+        },
         
         fadeIn: function() {
             this.$root.fadeIn(500);
@@ -50,13 +69,6 @@ define(function(require) {
         
         fadeOut: function(callback) {
             this.$root.fadeOut(500, callback);
-        },
-        
-        init: function() {
-            Protoplast.utils.bind(this, 'section.mainContent', this.recreateContent.bind(this));
-            Protoplast.utils.bind(this, 'section.title', this.updateTitle.bind(this));
-            Protoplast.utils.bind(this, 'section.description', this.updateDescription.bind(this));
-            Protoplast.utils.bind(this, 'descriptionVisible', this.toggleDescription.bind(this));
         },
 
         toggleDescription: function() {
