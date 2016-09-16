@@ -27,6 +27,10 @@ define(function(require) {
 
         clearSelectedSection: function() {
             this.themeModel.sections.selected = null;
+        },
+        
+        toggleExpanded: function() {
+            this.themeModel.expanded = !this.themeModel.expanded;
         }
         
     });

@@ -25,8 +25,23 @@ define(function(require) {
             component: Sections
         },
 
+        expanded: false,
+
         $create: function() {
             this.$root = $(this.root);
+        },
+
+        init: function() {
+            Protoplast.utils.bind(this, 'expanded', this.updateExpanded.bind(this));
+        },
+
+        updateExpanded: function() {
+            if (this.expanded) {
+                this.$root.addClass('expanded');
+            }
+            else{
+                this.$root.removeClass('expanded');
+            }
         },
 
         visible: {

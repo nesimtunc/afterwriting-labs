@@ -17,6 +17,8 @@ define(function(require) {
         height: null,
         
         footer: '',
+
+        expanded: false,
         
         small: {
             computed: ['width'],

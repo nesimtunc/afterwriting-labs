@@ -10,6 +10,10 @@ define(function(require) {
             inject: 'theme-model'
         },
 
+        themeController: {
+            inject: 'theme-controller'
+        },
+
         small: {
             get: function() {
                 return this.themeModel.small
@@ -21,6 +25,9 @@ define(function(require) {
             value: function() {
                 Protoplast.utils.bind(this, 'themeModel.sections', this.updateSections.bind(this));
                 Protoplast.utils.bind(this, 'themeModel.sections.selected', this.updateSelectedSection.bind(this));
+
+                this.view.on('close', this.closeCurrentContent.bind(this));
+                this.view.on('expand', this.toggleExpanded.bind(this));
             }
         },
 
@@ -32,6 +39,14 @@ define(function(require) {
         
         updateSelectedSection: function() {
             this.view.setSelected(this.themeModel.sections.selected);
+        },
+
+        closeCurrentContent: function() {
+            this.themeController.clearSelectedSection();
+        },
+
+        toggleExpanded: function() {
+            this.themeController.toggleExpanded();
         },
 
         $create: function() {

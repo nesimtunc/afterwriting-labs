@@ -18,6 +18,7 @@ define(function(require) {
                 Protoplast.utils.bind(this, 'themeModel.sections.selected', this.updateContentSize.bind(this));
                 Protoplast.utils.bind(this, 'themeModel.height', this.updateContentSize.bind(this));
                 Protoplast.utils.bind(this, 'themeModel.width', this.updateContentSize.bind(this));
+                Protoplast.utils.bind(this, 'themeModel.expanded', this.updateExpanded.bind(this));
             }
         },
 
@@ -36,6 +37,11 @@ define(function(require) {
   
             this.view.height = height;
             this.view.left = left;
+        },
+
+        updateExpanded: function() {
+            this.view.expanded = this.themeModel.expanded;
+            this.updateContentSize();
         }
 
     });
