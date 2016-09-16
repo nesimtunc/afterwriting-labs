@@ -41,13 +41,13 @@ define(function(require) {
                 var section = this.theme.getOrCreateSection('settings');
                 section.shortTitle = 'setup';
                 section.title = 'Settings';
+                section.description = 'Blah blah blah blah blah.';
                 section.smallIcon = this.appModel.staticPath + 'gfx/icons/settings.svg';
                 section.mainContent = this.settingsPanel;
 
-
                 var info = this.theme.getOrCreateSection('info');
-                info.shortTitle = 'setup';
-                info.title = 'Settings';
+                info.shortTitle = 'info';
+                info.title = 'About';
                 info.smallIcon = this.appModel.staticPath + 'gfx/icons/info.svg';
                 info.mainContent = Protoplast.Component.extend({html: '<span>Info...</span>'}).create();
             }
