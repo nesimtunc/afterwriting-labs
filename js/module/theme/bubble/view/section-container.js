@@ -29,7 +29,7 @@ define(function(require) {
 
         descriptionVisible: false,
 
-        topPadding: 75,
+        bottomPadding: 60,
 
         visible: {
             set: function(value) {
@@ -55,16 +55,20 @@ define(function(require) {
             Protoplast.utils.bind(this, 'section.title', this.updateTitle.bind(this));
             Protoplast.utils.bind(this, 'section.description', this.updateDescription.bind(this));
             Protoplast.utils.bind(this, 'descriptionVisible', this.toggleDescription.bind(this));
+            Protoplast.utils.bind(this, 'section.fitToBottom', this.updateHeight.bind(this));
             Protoplast.utils.bind(this, 'themeModel.height', this.updateHeight.bind(this));
-            Protoplast.utils.bind(this, 'topPadding', this.updateHeight.bind(this));
+            Protoplast.utils.bind(this, 'bottomPadding', this.updateHeight.bind(this));
         },
 
         updateHeight: function() {
-            this.$root.height((this.themeModel.height - this.topPadding) + 'px');
+            this.$root.height((this.themeModel.height - this.bottomPadding) + 'px');
+            if (this.section.fitToBottom) {
+                this.contentParent.root.style.height = (this.themeModel.height - 121) + 'px';
+            }
         },
         
-        fadeIn: function() {
-            this.$root.fadeIn(500);
+        fadeIn: function(callback) {
+            this.$root.fadeIn(500, callback);
         },
         
         fadeOut: function(callback) {
@@ -89,6 +93,7 @@ define(function(require) {
         recreateContent: function() {
             if (this.section.mainContent) {
                 this.contentParent.add(this.section.mainContent);
+                this.updateHeight();
             }
         },
 

@@ -28,6 +28,10 @@ define(function(require) {
         shortTitle: null,
         
         description: null,
+
+        fitToBottom: false,
+        
+        isActive: false,
         
         $create: function(name) {
             this.name = name;

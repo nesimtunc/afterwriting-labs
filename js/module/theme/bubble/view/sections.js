@@ -46,10 +46,10 @@ define(function(require) {
             });
         },
 
-        showSection: function(section) {
+        showSection: function(section, callback) {
             this.children.forEach(function(sectionContainer) {
                 if (sectionContainer.section === section) {
-                    sectionContainer.fadeIn();
+                    sectionContainer.fadeIn(callback);
                 }
             });
         }

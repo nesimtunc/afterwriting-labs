@@ -21,8 +21,11 @@ define(function(require) {
             return section;
         },
 
-        selectSection: function(section) {
-            this.themeModel.sections.selected = section;
+        selectSection: function(selectedSection) {
+            this.themeModel.sections.selected = selectedSection;
+            this.themeModel.sections.forEach(function(section) {
+                section.isActive = section === selectedSection;
+            });
         },
 
         clearSelectedSection: function() {
