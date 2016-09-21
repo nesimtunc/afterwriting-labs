@@ -6,6 +6,7 @@ define(function(require) {
 
     /**
      * @alias Module
+     * @deprecated
      */
     var Module = p.extend({
 

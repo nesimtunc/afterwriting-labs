@@ -1,6 +1,7 @@
 define(function(require) {
 
     var Protoplast = require('protoplast'),
+        EditorPresenter = require('module/editor/presenter/editor-presenter'),
         cm = require('libs/codemirror/lib/codemirror');
 
         require('libs/codemirror/addon/selection/active-line');
@@ -9,6 +10,10 @@ define(function(require) {
         require('module/editor/utils/cmmode');
 
     var Editor = Protoplast.Component.extend({
+        
+        $meta: {
+            presenter: EditorPresenter
+        },
 
         html: '<textarea></textarea>',
         
@@ -17,12 +22,24 @@ define(function(require) {
         width: null,
 
         height: null,
-        
+
+        content: '',
+
         init: function() {
             this.createEditor();
+            
             if (this.width !== null && this.height !== null) {
                 this.setSize(this.width, this.height);
             }
+            
+            Protoplast.utils.bind(this, 'content', function(){
+                this.editor.setValue(this.content);
+            }.bind(this));
+            
+            this.editor.on('change', function(){
+                this._content = this.editor.getValue();
+                this.dispatch('contentChanged', this.content);
+            }.bind(this));
         },
         
         createEditor: function() {
@@ -37,8 +54,6 @@ define(function(require) {
             });
 
             this.editor.refresh();
-            
-            this.editor.on('change', this.dispatch.bind(this, 'contentChanged'));
         },
 
         focus: function() {

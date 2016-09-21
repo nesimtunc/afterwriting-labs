@@ -68,11 +68,11 @@ define(function(require) {
         },
         
         fadeIn: function(callback) {
-            this.$root.fadeIn(500, callback);
+            this.$root.fadeIn(250, callback);
         },
         
         fadeOut: function(callback) {
-            this.$root.fadeOut(500, callback);
+            this.$root.fadeOut(250, callback);
         },
 
         toggleDescription: function() {

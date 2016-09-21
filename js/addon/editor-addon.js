@@ -1,6 +1,7 @@
 define(function(require) {
 
     var Protoplast = require('protoplast'),
+        EditorModule = require('module/editor/editor-module'),
         Editor = require('module/editor/view/editor');
 
     var EditorAddon = Protoplast.extend({
@@ -17,8 +18,13 @@ define(function(require) {
 
         section: null,
 
+        module: null,
+
         $create: function() {
+            this.module = EditorModule.create();
             this.editor = Editor.create();
+            this.module.use(this.editor);
+
             this.editor.setSize('100%', '100%');
         },
 
@@ -36,12 +42,12 @@ define(function(require) {
 
                 this.section = section;
 
-                Protoplast.utils.bind(section, 'isActive', this.updateEditor.bind(this));
+                Protoplast.utils.bind(section, 'isFullyVisible', this.updateEditor.bind(this));
             }
         },
 
         updateEditor: function() {
-            if (this.section.isActive) {
+            if (this.section.isFullyVisible) {
                 this.editor.refresh();
                 this.editor.focus();
             }

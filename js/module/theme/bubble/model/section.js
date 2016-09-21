@@ -33,6 +33,8 @@ define(function(require) {
         
         isActive: false,
         
+        isFullyVisible: false,
+        
         $create: function(name) {
             this.name = name;
         }

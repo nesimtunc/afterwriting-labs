@@ -6,6 +6,7 @@ define(function(require) {
     /**
      * @alias Plugin
      * @extends Module
+     * @deprecated
      */
     var Plugin = Module.extend({
         

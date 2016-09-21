@@ -1,14 +1,14 @@
 define(function(require) {
 
-    var p = require('protoplast');
+    var Protoplast = require('protoplast');
     
     /**
      * @alias Presenter
      */
-    var Presenter = p.extend([p.Dispatcher], {
+    var Presenter = Protoplast.Model.extend([Protoplast.Dispatcher], {
 
         $meta: {
-            constructors: [p.constructors.autobind]
+            constructors: [Protoplast.constructors.autobind]
         },
         
         init: {

@@ -34,6 +34,16 @@ define(function(require) {
         
         toggleExpanded: function() {
             this.themeModel.expanded = !this.themeModel.expanded;
+        },
+        
+        allSectionsHidden: function() {
+            this.themeModel.sections.forEach(function(section) {
+                section.isFullyVisible = false;
+            });
+        },
+        
+        selectedSectionFullyVisible: function() {
+            this.themeModel.sections.selected.isFullyVisible = true;
         }
         
     });
