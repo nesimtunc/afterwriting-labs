@@ -7,7 +7,7 @@ define(function(require) {
         SettingsGroup = require('module/settings/model/settings-group'),
         SettingsEntry = require('module/settings/model/settings-entry');
 
-    var SettingsConfigProvider = Protoplast.extend([Protoplast.Dispatcher], {
+    var SettingsConfigProvider = Protoplast.Object.extend({
 
         /**
          * Return list of groups used by settings addon

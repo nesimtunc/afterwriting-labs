@@ -4,7 +4,7 @@ define(function(require) {
         EditorModel = require('module/editor/model/editor-model'),
         EditorController = require('module/editor/controller/editor-controller');
 
-    var EditorModule = Protoplast.extend([Protoplast.Dispatcher], {
+    var EditorModule = Protoplast.Object.extend({
         
         context: null,
         

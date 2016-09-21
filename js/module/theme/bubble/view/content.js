@@ -76,7 +76,7 @@ define(function(require) {
         
         outerWidth: {
             get: function() {
-                return this.$root.outerWidth()
+                return this.$root ? this.$root.outerWidth() : null
             }
         },
 

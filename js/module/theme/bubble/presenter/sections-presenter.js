@@ -2,11 +2,7 @@ define(function(require) {
 
     var Protoplast = require('protoplast');
 
-    var SectionsPresenter = Protoplast.extend([Protoplast.Dispatcher], {
-
-        $meta: {
-            constructors: [Protoplast.constructors.autobind]
-        },
+    var SectionsPresenter = Protoplast.Object.extend({
 
         themeModel: {
             inject: 'theme-model'
@@ -16,12 +12,9 @@ define(function(require) {
             inject: 'theme-controller'
         },
 
-        init: {
-            injectInit: true,
-            value: function() {
-                Protoplast.utils.bind(this, 'themeModel.sections.selected', this.showSelectedSection.bind(this));
-                Protoplast.utils.bindProperty(this, 'themeModel.sections', this.view, 'sections');
-            }
+        init: function() {
+            Protoplast.utils.bind(this, 'themeModel.sections.selected', this.showSelectedSection.bind(this));
+            Protoplast.utils.bindProperty(this, 'themeModel.sections', this.view, 'sections');
         },
         
         showSelectedSection: function() {

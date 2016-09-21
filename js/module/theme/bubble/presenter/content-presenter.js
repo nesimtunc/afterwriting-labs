@@ -2,24 +2,21 @@ define(function(require) {
 
     var Protoplast = require('protoplast');
 
-    var ContentPresenter = Protoplast.extend([Protoplast.Dispatcher], {
+    var ContentPresenter = Protoplast.Object.extend({
 
         themeModel: {
             inject: 'theme-model'
         },
         
-        init: {
-            injectInit: true,
-            value: function() {
-                this.view.visible = false;
-                this.view.hide();
+        init: function() {
+            this.view.visible = false;
+            this.view.hide();
 
-                Protoplast.utils.bind(this, 'themeModel.sections.selected', this.updateContentVisibility.bind(this));
-                Protoplast.utils.bind(this, 'themeModel.sections.selected', this.updateContentSize.bind(this));
-                Protoplast.utils.bind(this, 'themeModel.height', this.updateContentSize.bind(this));
-                Protoplast.utils.bind(this, 'themeModel.width', this.updateContentSize.bind(this));
-                Protoplast.utils.bind(this, 'themeModel.expanded', this.updateExpanded.bind(this));
-            }
+            Protoplast.utils.bind(this, 'themeModel.sections.selected', this.updateContentVisibility.bind(this));
+            Protoplast.utils.bind(this, 'themeModel.sections.selected', this.updateContentSize.bind(this));
+            Protoplast.utils.bind(this, 'themeModel.height', this.updateContentSize.bind(this));
+            Protoplast.utils.bind(this, 'themeModel.width', this.updateContentSize.bind(this));
+            Protoplast.utils.bind(this, 'themeModel.expanded', this.updateExpanded.bind(this));
         },
 
         updateContentVisibility: function() {

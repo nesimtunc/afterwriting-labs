@@ -2,17 +2,14 @@ define(function(require) {
 
     var Protoplast = require('protoplast');
 
-    var FooterPresenter = Protoplast.extend([Protoplast.Dispatcher], {
+    var FooterPresenter = Protoplast.Object.extend({
         
         themeModel: {
             inject: 'theme-model'
         },
         
-        init: {
-            injectInit: true,
-            value: function() {
-                Protoplast.utils.bindProperty(this, 'themeModel.footer', this.view, 'content');
-            }
+        init: function() {
+            Protoplast.utils.bindProperty(this, 'themeModel.footer', this.view, 'content');
         }
         
     });

@@ -4,7 +4,7 @@ define(function(require) {
         ThemeModel = require('module/theme/bubble/model/theme-model'),
         ThemeController = require('module/theme/bubble/controller/theme-controller');
 
-    var BubbleTheme = Protoplast.extend([Protoplast.Dispatcher], {
+    var BubbleTheme = Protoplast.Object.extend({
 
         context: null,
 

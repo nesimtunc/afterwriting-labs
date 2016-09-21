@@ -5,10 +5,9 @@ define(function(require) {
     /**
      * @alias Addon
      */
-    var Addon = p.extend({
+    var Addon = p.Object.extend({
 
         $meta: {
-            constructors: [p.constructors.autobind],
             addon: true
         },
 
@@ -25,9 +24,7 @@ define(function(require) {
             get: function() {
                 return this._api;
             }
-        },
-
-        init: function() {}
+        }
     });
 
     return Addon;

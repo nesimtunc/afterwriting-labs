@@ -2,17 +2,14 @@ define(function(require) {
 
     var Protoplast = require('protoplast');
 
-    var TopMenuItemPresenter = Protoplast.extend([Protoplast.Dispatcher], {
+    var TopMenuItemPresenter = Protoplast.Object.extend({
 
         themeController: {
             inject: 'theme-controller'
         },
 
-        init: {
-            injectInit: true,
-            value: function() {
-                this.view.on('clicked', this.selectSection.bind(this));
-            }
+        init: function() {
+            this.view.on('clicked', this.selectSection.bind(this));
         },
 
         selectSection: function() {

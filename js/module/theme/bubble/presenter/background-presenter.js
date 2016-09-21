@@ -2,17 +2,14 @@ define(function(require) {
 
     var Protoplast = require('protoplast');
 
-    var BackgroundPresenter = Protoplast.extend([Protoplast.Dispatcher], {
+    var BackgroundPresenter = Protoplast.Object.extend({
         
         themeController: {
             inject: 'theme-controller'
         },
         
-        init: {
-            injectInit: true,
-            value: function() {
-                this.view.on('clicked', this.clearSelectedSection.bind(this));
-            }
+        init: function() {
+            this.view.on('clicked', this.clearSelectedSection.bind(this));
         },
         
         clearSelectedSection: function() {

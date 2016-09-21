@@ -4,7 +4,7 @@ define(function(require) {
         SettingsController = require('module/settings/controller/settings-controller'),
         SettingsModel = require('module/settings/model/settings-model');
 
-    var SettingsModule = Protoplast.extend([Protoplast.Dispatcher], {
+    var SettingsModule = Protoplast.Object.extend({
         
         context: null,
         

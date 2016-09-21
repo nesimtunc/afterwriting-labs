@@ -50,7 +50,7 @@
     "jstree": "^3.0.9",
     "mocha": "^2.2.1",
     "off": "0.0.10",
-    "protoplast": "^2.0.0-alpha.5",
+    "protoplast": "^2.0.0-alpha.7",
     "sinon": "^1.14.0",
     "text": "requirejs/text"
   },

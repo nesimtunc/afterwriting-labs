@@ -1,12 +1,8 @@
 define(function(require) {
 
-    var Presenter = require('core/presenter'),
-        Input = require('component/control/input'),
-        Checkbox = require('component/control/checkbox'),
-        Dropdown = require('component/control/dropdown'),
-        Protoplast = require('protoplast');
+    var Protoplast = require('protoplast');
 
-    var SettingsPanelPresenter = Presenter.extend({
+    var SettingsPanelPresenter = Protoplast.Object.extend({
 
         settings: {
             inject: 'settings-model'

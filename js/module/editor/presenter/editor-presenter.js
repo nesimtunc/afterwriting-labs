@@ -2,7 +2,7 @@ define(function(require) {
 
     var Protoplast = require('protoplast');
 
-    var EditorPresenter = Protoplast.extend([Protoplast.Dispatcher], {
+    var EditorPresenter = Protoplast.Object.extend({
         
         editorModel: {
             inject: 'editor-model'
@@ -12,12 +12,9 @@ define(function(require) {
             inject: 'editor-controller'
         },
         
-        init: {
-            injectInit: true,
-            value: function() {
-                Protoplast.utils.bindProperty(this, 'editorModel.content', this.view, 'content');
-                this.view.on('contentChanged', this.updateContent.bind(this));
-            }
+        init: function() {
+            Protoplast.utils.bindProperty(this, 'editorModel.content', this.view, 'content');
+            this.view.on('contentChanged', this.updateContent.bind(this));
         },
         
         updateContent: function(value) {
