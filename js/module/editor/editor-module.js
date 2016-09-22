@@ -2,6 +2,7 @@ define(function(require) {
 
     var Protoplast = require('protoplast'),
         EditorModel = require('module/editor/model/editor-model'),
+        FountainEditorView = require('module/editor/view/fountain-editor'),
         EditorController = require('module/editor/controller/editor-controller');
 
     var EditorModule = Protoplast.Object.extend({
@@ -23,11 +24,13 @@ define(function(require) {
             
             this.context.build();
         },
-
-        use: function(view) {
-            this.context.register(view);
+        
+        getEditorView: function() {
+            var editorView = FountainEditorView.create();
+            this.context.register(editorView);
+            return editorView;
         }
-
+        
     });
 
     return EditorModule;

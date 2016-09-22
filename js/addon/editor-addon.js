@@ -1,8 +1,7 @@
 define(function(require) {
 
     var Protoplast = require('protoplast'),
-        EditorModule = require('module/editor/editor-module'),
-        Editor = require('module/editor/view/editor');
+        EditorModule = require('module/editor/editor-module');
 
     var EditorAddon = Protoplast.Object.extend({
 
@@ -18,9 +17,7 @@ define(function(require) {
 
         $create: function() {
             this.module = EditorModule.create();
-            this.editor = Editor.create();
-            this.module.use(this.editor);
-
+            this.editor = this.module.getEditorView();
             this.editor.setSize('100%', '100%');
         },
 
