@@ -8,6 +8,7 @@
             jquery: '../node_modules/jquery/dist/jquery',
             handlebars: '../node_modules/handlebars/dist/handlebars',
             logger: 'libs/logger',
+            lodash: '../node_modules/lodash/lodash',
             saveAs: '../node_modules/file-saver/FileSaver',
             d3: '../node_modules/d3/d3',
             modernizr: 'libs/modernizr',

@@ -18,8 +18,14 @@ define(function(require) {
             context.register('settings-controller', this.settingsController);
             context.register('settings-model', this.settingsModel);
             context.build();
+
+            this.settingsModel.on('valuesChanged', this._bubbleValuesChanged, this);
             
             this.context = context;
+        },
+
+        _bubbleValuesChanged: function(event) {
+            this.dispatch('valuesChanged', event);
         },
         
         use: function(view) {
@@ -28,6 +34,14 @@ define(function(require) {
         
         setGroups: function(groups) {
             this.settingsController.setGroups(groups);
+        },
+        
+        getValues: function() {
+            return this.settingsModel.values;
+        },
+        
+        setValues: function(values) {
+            this.settingsController.setValues(values);
         }
         
     });
