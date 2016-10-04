@@ -1,6 +1,6 @@
 require(['bootstrap',
 
-    'addon/about-addon',
+    'addon/about-addon/about-addon',
     'addon/editor-addon',
     'addon/settings-addon/settings-addon',
     'addon/storage-addon',

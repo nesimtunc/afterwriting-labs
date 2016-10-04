@@ -22,8 +22,8 @@ define(function(require) {
             this.main = Main.create();
 
             document.body.innerHTML = '';
+            this.theme.use(this.main);
             this.root = Protoplast.Component.Root(document.body);
-            this.theme.use(this.root);
             this.root.add(this.main);
         },
         

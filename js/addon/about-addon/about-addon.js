@@ -1,7 +1,7 @@
 define(function(require) {
 
     var Protoplast = require('protoplast'),
-        About = require('module/about/view/about');
+        About = require('addon/about-addon/view/about');
 
     var AboutAddon = Protoplast.extend({
         

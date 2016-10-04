@@ -2,7 +2,7 @@ define(function(require) {
 
     var $ = require('jquery'),
         Protoplast = require('protoplast'),
-        AboutTemplate = require('text!module/about/view/about.html');
+        AboutTemplate = require('text!addon/about-addon/view/about.html');
 
     var About = Protoplast.Component.extend({
 
