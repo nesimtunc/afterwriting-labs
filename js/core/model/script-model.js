@@ -2,11 +2,11 @@ define(function(require) {
 
     var Protoplast = require('protoplast');
 
-    var EditorModel = Protoplast.Model.extend({
+    var ScriptModel = Protoplast.Model.extend({
         
-        content: ''
+        script: 'Init...'
         
     });
 
-    return EditorModel;
+    return ScriptModel;
 });

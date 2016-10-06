@@ -22,6 +22,10 @@ define(function(require) {
         appModel: {
             inject: 'app-model'
         },
+        
+        settingsModel: {
+            inject: 'settings-model'
+        },
 
         settingsModule: null,
 
@@ -64,6 +68,8 @@ define(function(require) {
             this.storage.load('settings', function(userSettings) {
                 _.assign(settings, defaultSettings, userSettings);
                 this.settingsModule.setValues(settings);
+                this.settingsModel.settings = this.settingsModule;
+                this.settingsModel.settingsLoaded = true;
                 this._bindSettingsChanges();
             }.bind(this));
         },

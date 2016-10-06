@@ -40,6 +40,10 @@ define(function(require) {
             return this.settingsModel.values;
         },
         
+        getValue: function(key) {
+            return this.settingsModel.values[key];
+        },
+        
         setValues: function(values) {
             this.settingsController.setValues(values);
         }

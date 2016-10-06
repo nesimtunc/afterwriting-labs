@@ -5,7 +5,7 @@ define(function(require) {
     var SettingsModel = Protoplast.Model.extend({
 
         /**
-         * @type {SettingGroup]} 
+         * @type {SettingsGroup[]} 
          */
         groups: null,
         

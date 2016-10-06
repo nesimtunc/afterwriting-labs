@@ -1,4 +1,4 @@
-define(['dependencies', 'protoplast', 'core/model/app-model'], function(_, p, AppModel) {
+define(['dependencies', 'protoplast', 'core/model/app-model', 'core/model/script-model', 'core/model/settings-model'], function(_, p, AppModel, ScriptModel, SettingsModel) {
 
     var Bootstrap = p.extend({
         
@@ -14,9 +14,14 @@ define(['dependencies', 'protoplast', 'core/model/app-model'], function(_, p, Ap
 
             this.appModel = AppModel.create();
             this.appModel.env = "dev";
+            
+            this.scriptModel = ScriptModel.create();
+            this.settingsModel = SettingsModel.create();
 
             this.context = p.Context.create();
             this.context.register('app-model', this.appModel);
+            this.context.register('script-model', this.scriptModel);
+            this.context.register('settings-model', this.settingsModel);
             
             addons.forEach(function(Addon) {
                 if (!Addon.name) {

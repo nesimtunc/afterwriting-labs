@@ -1,7 +1,7 @@
 define(function(require) {
 
     var Protoplast = require('protoplast'),
-        EditorModule = require('module/editor/editor-module');
+        FountainEditor = require('module/editor/component/fountain-editor');
 
     var EditorAddon = Protoplast.Object.extend({
 
@@ -11,13 +11,24 @@ define(function(require) {
             inject: 'theme'
         },
 
+        scriptModel: {
+            inject: 'script-model'
+        },
+
+        storage: {
+            inject: 'storage'
+        },
+        
+        settingsModel: {
+            inject: 'settings-model'
+        },
+
         section: null,
 
         module: null,
 
         $create: function() {
-            this.module = EditorModule.create();
-            this.editor = this.module.getEditorView();
+            this.editor = FountainEditor.create();
             this.editor.setSize('100%', '100%');
         },
 
@@ -33,7 +44,30 @@ define(function(require) {
 
             this.section = section;
 
-            Protoplast.utils.bind(section, 'isFullyVisible', this.updateEditor.bind(this));
+            Protoplast.utils.bind(section, 'isFullyVisible', this.updateEditor);
+            Protoplast.utils.bind(this.settingsModel, 'settingsLoaded', this.loadLastContent);
+            this.editor.on('contentChanged', this.updateContent);
+        },
+        
+        loadLastContent: function() {
+            if (!this.settingsModel.settingsLoaded) {
+                return;
+            }
+
+            if (this.settingsModel.settings.getValues().load_last_opened) {
+                this.storage.load('last-content', function(content) {
+                    this.scriptModel.script = content || '';
+                    Protoplast.utils.bindProperty(this.scriptModel, 'script', this.editor, 'content');
+                }.bind(this));
+            }
+            else {
+                Protoplast.utils.bindProperty(this.scriptModel, 'script', this.editor, 'content');
+            }
+        },
+
+        updateContent: function(content) {
+            this.scriptModel.script = content;
+            this.storage.save('last-content', content);
         },
 
         updateEditor: function() {
